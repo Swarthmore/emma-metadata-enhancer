@@ -23,7 +23,7 @@ export const RemediationSource = () => {
   return (
     <FormField
       control={form.control}
-      name='remediation-source'
+      name='remediationSource'
       render={({ field }) => (
         <FormItem>
           <FormLabel>Remediation Source</FormLabel>

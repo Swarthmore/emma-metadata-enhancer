@@ -16,7 +16,7 @@ export const PartsRemediated = () => {
   return (
     <FormField
       control={form.control}
-      name='parts-remediated'
+      name='partsRemediated'
       render={({ field }) => (
         <FormItem>
           <FormLabel>Parts Remediated</FormLabel>

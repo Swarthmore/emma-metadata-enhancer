@@ -16,7 +16,7 @@ export const AccessibilitySummary = () => {
   return (
     <FormField
       control={form.control}
-      name='accessibility-summary'
+      name='accessibilitySummary'
       render={({ field }) => (
         <FormItem>
           <FormLabel>Accessibility Summary</FormLabel>

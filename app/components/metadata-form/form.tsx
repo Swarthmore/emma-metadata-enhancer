@@ -5,10 +5,10 @@ import { z } from 'zod'
 
 import { Button } from '../ui/button'
 import { Form } from '../ui/form'
-import { Separator } from '../ui/separator'
 import { AccessibilityFeatures } from './fields/accessibility-features'
 import { AccessibilityHazards } from './fields/accessibility-hazards'
 import { AccessibilitySummary } from './fields/accessibility-summary'
+import { File } from './fields/file'
 import { Filename } from './fields/filename'
 import { Format } from './fields/format'
 import { Identifiers } from './fields/identifiers'
@@ -29,16 +29,21 @@ import { Title } from './fields/title'
 import { Type } from './fields/type'
 import { formSchema } from './schema'
 
-export const MetadataForm = () => {
+export type MetadataFormProps = {
+  onSubmit: (values: z.infer<typeof formSchema>) => void
+}
+
+export const MetadataForm = ({ onSubmit }: MetadataFormProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema)
   })
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values)
-  }
-
+  // Field config
   const fields = [
+    {
+      Component: File,
+      order: 1
+    },
     {
       Component: OriginalCreator,
       order: 10
@@ -129,20 +134,35 @@ export const MetadataForm = () => {
     }
   ]
 
+  const renderFields = () =>
+    fields
+      .sort((a, b) => a.order - b.order)
+      .map((field) => (
+        <div key={field.order}>
+          <field.Component {...field} />
+        </div>
+      ))
+
+  const preFillForm = () => {
+    console.log('ok')
+  }
+
   return (
     <Form {...form}>
+      <Button variant='ghost' onClick={preFillForm}>
+        Pre-fill Form
+      </Button>
+
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className='space-y-8 justify-start'
+        className='space-y-4 justify-start'
       >
-        {fields
-          .sort((a, b) => a.order - b.order)
-          .map((field) => (
-            <div key={field.order}>
-              <field.Component {...field} />
-            </div>
-          ))}
-        <div className={cn('inline-flex', 'justify-end', 'w-full')}>
+        {renderFields()}
+
+        <div
+          id='form-actions'
+          className={cn('inline-flex', 'justify-end', 'w-full')}
+        >
           <Button type='reset' variant='destructive' className='mr-3'>
             Reset Form
           </Button>

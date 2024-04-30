@@ -17,7 +17,7 @@ export const AccessibilityHazards = () => {
   return (
     <FormField
       control={form.control}
-      name='accessibility-hazards'
+      name='accessibilityHazards'
       render={({ field }) => (
         <FormItem>
           <FormLabel>Accessibility Hazards</FormLabel>

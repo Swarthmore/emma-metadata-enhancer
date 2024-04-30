@@ -16,7 +16,7 @@ export const RelatedIdentifiers = () => {
   return (
     <FormField
       control={form.control}
-      name='related-identifiers'
+      name='relatedIdentifiers'
       render={({ field }) => (
         <FormItem>
           <FormLabel>Related identifiers</FormLabel>

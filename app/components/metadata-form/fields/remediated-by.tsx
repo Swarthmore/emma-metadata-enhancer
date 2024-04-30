@@ -16,7 +16,7 @@ export const RemediatedBy = () => {
   return (
     <FormField
       control={form.control}
-      name='remediated-by'
+      name='remediatedBy'
       render={({ field }) => (
         <FormItem>
           <FormLabel>Remediated By</FormLabel>

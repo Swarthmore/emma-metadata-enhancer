@@ -16,7 +16,7 @@ export const SeriesPosition = () => {
   return (
     <FormField
       control={form.control}
-      name='series-position'
+      name='seriesPosition'
       render={({ field }) => (
         <FormItem>
           <FormLabel>Series position</FormLabel>

@@ -23,7 +23,7 @@ export const RemediationAspects = () => {
   return (
     <FormField
       control={form.control}
-      name='remediation-aspects'
+      name='remediationAspects'
       render={({ field }) => (
         <FormItem>
           <FormLabel>Remediation Aspects</FormLabel>

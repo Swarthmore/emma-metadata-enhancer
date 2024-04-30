@@ -23,7 +23,7 @@ export const SeriesType = () => {
   return (
     <FormField
       control={form.control}
-      name='series-type'
+      name='seriesType'
       render={({ field }) => (
         <FormItem>
           <FormLabel>Series Type</FormLabel>

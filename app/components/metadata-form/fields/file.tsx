@@ -10,22 +10,25 @@ import {
 } from '../../ui/form'
 import { Input } from '../../ui/input'
 
-export const OriginalCreator = () => {
+export const File = () => {
   const form = useForm()
 
   return (
     <FormField
       control={form.control}
-      name='originalCreator'
+      name='file'
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Original Creator</FormLabel>
+          <FormLabel>File</FormLabel>
           <FormControl>
-            <Input placeholder='Original creator' {...field} />
+            <Input
+              id='file'
+              type='file'
+              accept='.html,text/html,.htm'
+              {...field}
+            />
           </FormControl>
-          <FormDescription>
-            The original creator of the document.
-          </FormDescription>
+          <FormDescription>HTML file to enhance 🪄.</FormDescription>
           <FormMessage />
         </FormItem>
       )}
