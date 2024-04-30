@@ -11,9 +11,9 @@ export const Filename = () => {
             name="filename"
             render={({ field }) => (
                 <FormItem>
-                    <FormLabel>File Name</FormLabel>
+                    <FormLabel>Filename</FormLabel>
                     <FormControl>
-                        <Input placeholder="filename" {...field} />
+                        <Input placeholder="Filename" {...field} />
                     </FormControl>
                     <FormDescription>
                         The filename of the document.

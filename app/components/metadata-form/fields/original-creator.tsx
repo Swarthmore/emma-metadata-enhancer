@@ -8,12 +8,12 @@ export const OriginalCreator = () => {
     return (
         <FormField
             control={form.control}
-            name="originalCreator"
+            name="original-creator"
             render={({ field }) => (
                 <FormItem>
                     <FormLabel>Original Creator</FormLabel>
                     <FormControl>
-                        <Input placeholder="original creator" {...field} />
+                        <Input placeholder="Original creator" {...field} />
                     </FormControl>
                     <FormDescription>
                         This is the original creator of the document.

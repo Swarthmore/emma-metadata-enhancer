@@ -13,7 +13,7 @@ export const Language = () => {
                 <FormItem>
                     <FormLabel>Language</FormLabel>
                     <FormControl>
-                        <Input placeholder="language" {...field} />
+                        <Input placeholder="Language" {...field} />
                     </FormControl>
                     <FormDescription>
                       The language the document is presented in.

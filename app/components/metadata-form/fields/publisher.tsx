@@ -11,7 +11,7 @@ export const Publisher = () => {
             name="publisher"
             render={({ field }) => (
                 <FormItem>
-                    <FormLabel>Publishers</FormLabel>
+                    <FormLabel>Publisher</FormLabel>
                     <FormControl>
                         <Input placeholder="publisher" {...field} />
                     </FormControl>

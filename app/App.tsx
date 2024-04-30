@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import './App.css'
 import { cn } from './lib/utils'
-import { MetadataForm } from './components/metadata-form/MetadataForm'
+import { MetadataForm } from './components/metadata-form/form'
 import { ThemeProvider } from './components/theme-provider'
 import { ModeToggle } from './components/mode-toggle'
 
@@ -11,7 +11,7 @@ export const App = () => {
     <ThemeProvider defaultTheme="dark" storageKey="theme">
       <Layout
         Form={<MetadataForm />}
-        Preview={<div><ModeToggle /></div>}
+        Preview={<ModeToggle />}
       />
 
     </ThemeProvider>

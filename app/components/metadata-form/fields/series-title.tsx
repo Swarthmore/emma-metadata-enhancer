@@ -8,12 +8,12 @@ export const SeriesTitle = () => {
     return (
         <FormField
             control={form.control}
-            name="seriesTitle"
+            name="series-title"
             render={({ field }) => (
                 <FormItem>
-                    <FormLabel>Series title</FormLabel>
+                    <FormLabel>Series Title</FormLabel>
                     <FormControl>
-                        <Input placeholder="series title" {...field} />
+                        <Input placeholder="Series title" {...field} />
                     </FormControl>
                     <FormDescription>
                       ???

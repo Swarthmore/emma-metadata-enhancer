@@ -12,18 +12,18 @@ export const RemediationComplete = () => {
         name="remediation-complete"
         render={({ field }) => (
             <FormItem>
-                <FormLabel>Remediation complete</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                        <SelectTrigger>
-                            <SelectValue placeholder="Is the remediation complete?" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="No">No</SelectItem>
-                            <SelectItem value="Yes">Yes</SelectItem>
-                        </SelectContent>
-                    </FormControl>
-                </Select>
+                <FormLabel>Remediation Complete</FormLabel>
+                <FormControl>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <SelectTrigger>
+                                <SelectValue placeholder="Is the remediation complete?" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="No">No</SelectItem>
+                                <SelectItem value="Yes">Yes</SelectItem>
+                            </SelectContent>
+                    </Select>
+                </FormControl>
                 <FormDescription>
                     Field description
                 </FormDescription>

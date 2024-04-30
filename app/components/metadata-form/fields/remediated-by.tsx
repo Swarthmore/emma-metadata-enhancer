@@ -8,12 +8,12 @@ export const RemediatedBy = () => {
     return (
         <FormField
             control={form.control}
-            name="remediatedBy"
+            name="remediated-by"
             render={({ field }) => (
                 <FormItem>
                     <FormLabel>Remediated By</FormLabel>
                     <FormControl>
-                        <Input placeholder="remediated by" {...field} />
+                        <Input placeholder="Remediated by" {...field} />
                     </FormControl>
                     <FormDescription>
                       Who remediated the document?

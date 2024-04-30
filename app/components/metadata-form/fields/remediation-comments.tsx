@@ -8,12 +8,12 @@ export const RemediationComments = () => {
     return (
         <FormField
             control={form.control}
-            name="remediationComments"
+            name="remediation-comments"
             render={({ field }) => (
                 <FormItem>
                     <FormLabel>Remediation Comments</FormLabel>
                     <FormControl>
-                        <Input placeholder="remediation comments" {...field} />
+                        <Input placeholder="Remediation comments" {...field} />
                     </FormControl>
                     <FormDescription>
                       Any comments about the remediation of this document.

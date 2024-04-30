@@ -13,7 +13,7 @@ export const Identifiers = () => {
                 <FormItem>
                     <FormLabel>Identifiers</FormLabel>
                     <FormControl>
-                        <Input placeholder="identifiers" {...field} />
+                        <Input placeholder="Identifiers" {...field} />
                     </FormControl>
                     <FormDescription>
                       ???

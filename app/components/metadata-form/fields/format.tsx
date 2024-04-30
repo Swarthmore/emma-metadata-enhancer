@@ -13,25 +13,25 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useForm } from "react-hook-form";
-import { accessibilityHazardsOptions } from "../field-options";
+import { formatOptions } from "../field-options";
 
-export const AccessibilityHazards = () => {
+export const Format = () => {
   const form = useForm();
 
   return (
     <FormField
       control={form.control}
-      name="accessibility-hazards"
+      name="format"
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Accessibility Hazards</FormLabel>
+          <FormLabel>Format</FormLabel>
           <FormControl>
             <Select onValueChange={field.onChange} defaultValue={field.value}>
               <SelectTrigger>
-                <SelectValue placeholder="Select accessibility hazards" />
+                <SelectValue placeholder="Select format" />
               </SelectTrigger>
               <SelectContent>
-                {accessibilityHazardsOptions.map(({ value, label }) => (
+                {formatOptions.map(({ value, label }) => (
                   <SelectItem key={value} value={value}>
                     {label}
                   </SelectItem>
@@ -39,11 +39,9 @@ export const AccessibilityHazards = () => {
               </SelectContent>
             </Select>
           </FormControl>
-          <FormDescription>???</FormDescription>
+          <FormDescription>The document format</FormDescription>
         </FormItem>
       )}
     />
   );
 };
-
-

@@ -8,12 +8,12 @@ export const SeriesPosition = () => {
     return (
         <FormField
             control={form.control}
-            name="seriesPosition"
+            name="series-position"
             render={({ field }) => (
                 <FormItem>
                     <FormLabel>Series position</FormLabel>
                     <FormControl>
-                        <Input placeholder="series position" {...field} />
+                        <Input placeholder="Series position" {...field} />
                     </FormControl>
                     <FormDescription>
                       ???

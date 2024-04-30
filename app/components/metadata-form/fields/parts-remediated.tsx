@@ -8,12 +8,12 @@ export const PartsRemediated = () => {
     return (
         <FormField
             control={form.control}
-            name="partsRemediated"
+            name="parts-remediated"
             render={({ field }) => (
                 <FormItem>
                     <FormLabel>Parts Remediated</FormLabel>
                     <FormControl>
-                        <Input placeholder="parts remediated" {...field} />
+                        <Input placeholder="Parts remediated" {...field} />
                     </FormControl>
                     <FormDescription>
                         The parts of the document that have been remediated.
