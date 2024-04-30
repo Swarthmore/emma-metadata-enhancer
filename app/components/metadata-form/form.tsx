@@ -1,6 +1,4 @@
 import { cn } from '@/lib/utils'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { Button } from '../ui/button'
@@ -28,15 +26,14 @@ import { SeriesType } from './fields/series-type'
 import { Title } from './fields/title'
 import { Type } from './fields/type'
 import { formSchema } from './schema'
+import { useMetadataForm } from './useMetadataForm'
 
 export type MetadataFormProps = {
   onSubmit: (values: z.infer<typeof formSchema>) => void
 }
 
 export const MetadataForm = ({ onSubmit }: MetadataFormProps) => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema)
-  })
+  const form = useMetadataForm()
 
   // Field config
   const fields = [
@@ -145,6 +142,10 @@ export const MetadataForm = ({ onSubmit }: MetadataFormProps) => {
 
   const preFillForm = () => {
     console.log('ok')
+    form.setValue('filename', 'myfile.html', {
+      shouldTouch: true,
+      shouldValidate: true
+    })
   }
 
   return (

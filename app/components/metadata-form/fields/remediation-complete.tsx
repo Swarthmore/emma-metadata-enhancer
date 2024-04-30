@@ -13,10 +13,11 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
-import { useForm } from 'react-hook-form'
+
+import { useMetadataForm } from '../useMetadataForm'
 
 export const RemediationComplete = () => {
-  const form = useForm()
+  const form = useMetadataForm()
 
   return (
     <FormField

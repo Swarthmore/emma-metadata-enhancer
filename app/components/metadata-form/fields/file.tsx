@@ -1,5 +1,3 @@
-import { useForm } from 'react-hook-form'
-
 import {
   FormControl,
   FormDescription,
@@ -9,9 +7,10 @@ import {
   FormMessage
 } from '../../ui/form'
 import { Input } from '../../ui/input'
+import { useMetadataForm } from '../useMetadataForm'
 
 export const File = () => {
-  const form = useForm()
+  const form = useMetadataForm()
 
   return (
     <FormField
@@ -24,7 +23,7 @@ export const File = () => {
             <Input
               id='file'
               type='file'
-              accept='.html,text/html,.htm'
+              // accept='.html,text/html,.htm'
               {...field}
             />
           </FormControl>

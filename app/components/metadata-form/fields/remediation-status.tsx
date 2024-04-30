@@ -12,12 +12,12 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
-import { useForm } from 'react-hook-form'
 
 import { remediationStatusOptions } from '../field-options'
+import { useMetadataForm } from '../useMetadataForm'
 
 export const RemediationStatus = () => {
-  const form = useForm()
+  const form = useMetadataForm()
 
   return (
     <FormField
@@ -27,7 +27,7 @@ export const RemediationStatus = () => {
         <FormItem>
           <FormLabel>Remediation Status</FormLabel>
           <FormControl>
-            <Select onValueChange={field.onChange} defaultValue={field.value}>
+            <Select onValueChange={field.onChange} defaultValue={''}>
               <SelectTrigger>
                 <SelectValue placeholder='Remediation status' />
               </SelectTrigger>

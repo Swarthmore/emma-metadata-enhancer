@@ -13,12 +13,12 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
-import { useForm } from 'react-hook-form'
 
 import { formatOptions } from '../field-options'
+import { useMetadataForm } from '../useMetadataForm'
 
 export const Format = () => {
-  const form = useForm()
+  const form = useMetadataForm()
 
   return (
     <FormField
@@ -28,7 +28,7 @@ export const Format = () => {
         <FormItem>
           <FormLabel>Format</FormLabel>
           <FormControl>
-            <Select onValueChange={field.onChange} defaultValue={field.value}>
+            <Select onValueChange={field.onChange} defaultValue={''}>
               <SelectTrigger>
                 <SelectValue placeholder='Select format' />
               </SelectTrigger>

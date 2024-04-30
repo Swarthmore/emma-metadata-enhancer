@@ -1,5 +1,3 @@
-import { useForm } from 'react-hook-form'
-
 import {
   FormControl,
   FormDescription,
@@ -9,9 +7,10 @@ import {
   FormMessage
 } from '../../ui/form'
 import { Input } from '../../ui/input'
+import { useMetadataForm } from '../useMetadataForm'
 
 export const Publisher = () => {
-  const form = useForm()
+  const form = useMetadataForm()
 
   return (
     <FormField

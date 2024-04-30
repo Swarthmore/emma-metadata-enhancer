@@ -7,12 +7,12 @@ import {
   FormMessage
 } from '@/components/ui/form'
 import MultiSelectFormField from '@/components/ui/multi-select'
-import { useForm } from 'react-hook-form'
 
 import { accessibilityHazardsOptions } from '../field-options'
+import { useMetadataForm } from '../useMetadataForm'
 
 export const AccessibilityHazards = () => {
-  const form = useForm()
+  const form = useMetadataForm()
 
   return (
     <FormField

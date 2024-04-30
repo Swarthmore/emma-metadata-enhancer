@@ -16,8 +16,21 @@ const optionSchema = z.object({
   value: z.string()
 })
 
+const MAX_FILE_SIZE = 5 * 1024 * 1024
+const ACCEPTED_FILE_TYPES = ['text/html']
+
 export const formSchema = z.object({
   id: z.string(),
+  file: z
+    .any()
+    // To not allow files other than images
+    .refine((file) => ACCEPTED_FILE_TYPES.includes(file?.type), {
+      message: '.html and .html files are accepted.'
+    })
+    // To not allow files larger than 5MB
+    .refine((file) => file?.size <= MAX_FILE_SIZE, {
+      message: `Max file size is 5MB.`
+    }),
   originalCreator: z.string().min(1),
   filename: z.string().min(1),
   remediationComplete: z.enum(['Yes', 'No']),
