@@ -4,31 +4,33 @@ import {
   FormField,
   FormItem,
   FormLabel,
-} from "@/components/ui/form";
+  FormMessage
+} from '@/components/ui/form'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { useForm } from "react-hook-form";
-import { seriesTypeOptions } from "../field-options";
+  SelectValue
+} from '@/components/ui/select'
+import { useForm } from 'react-hook-form'
+
+import { seriesTypeOptions } from '../field-options'
 
 export const SeriesType = () => {
-  const form = useForm();
+  const form = useForm()
 
   return (
     <FormField
       control={form.control}
-      name="series-type"
+      name='series-type'
       render={({ field }) => (
         <FormItem>
           <FormLabel>Series Type</FormLabel>
           <FormControl>
             <Select onValueChange={field.onChange} defaultValue={field.value}>
               <SelectTrigger>
-                <SelectValue placeholder="Select series type" />
+                <SelectValue placeholder='Select series type' />
               </SelectTrigger>
               <SelectContent>
                 {seriesTypeOptions.map(({ value, label }) => (
@@ -39,11 +41,10 @@ export const SeriesType = () => {
               </SelectContent>
             </Select>
           </FormControl>
-          <FormDescription>???</FormDescription>
+          <FormDescription></FormDescription>
+          <FormMessage />
         </FormItem>
       )}
     />
-  );
-};
-
-
+  )
+}

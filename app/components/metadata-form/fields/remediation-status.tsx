@@ -1,34 +1,35 @@
 import {
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
-} from "@/components/ui/form";
+  FormMessage
+} from '@/components/ui/form'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { useForm } from "react-hook-form";
-import { remediationStatusOptions } from "../field-options";
+  SelectValue
+} from '@/components/ui/select'
+import { useForm } from 'react-hook-form'
+
+import { remediationStatusOptions } from '../field-options'
 
 export const RemediationStatus = () => {
-  const form = useForm();
+  const form = useForm()
 
   return (
     <FormField
       control={form.control}
-      name="remediation-status"
+      name='remediation-status'
       render={({ field }) => (
         <FormItem>
           <FormLabel>Remediation Status</FormLabel>
           <FormControl>
             <Select onValueChange={field.onChange} defaultValue={field.value}>
               <SelectTrigger>
-                <SelectValue placeholder="Remediation status" />
+                <SelectValue placeholder='Remediation status' />
               </SelectTrigger>
               <SelectContent>
                 {remediationStatusOptions.map(({ value, label }) => (
@@ -39,9 +40,9 @@ export const RemediationStatus = () => {
               </SelectContent>
             </Select>
           </FormControl>
-          <FormDescription>???</FormDescription>
+          <FormMessage />
         </FormItem>
       )}
     />
-  );
-};
+  )
+}

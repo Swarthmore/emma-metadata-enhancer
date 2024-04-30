@@ -1,34 +1,35 @@
 import {
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
-} from "@/components/ui/form";
+  FormMessage
+} from '@/components/ui/form'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { useForm } from "react-hook-form";
-import { typeOptions } from "../field-options";
+  SelectValue
+} from '@/components/ui/select'
+import { useForm } from 'react-hook-form'
+
+import { typeOptions } from '../field-options'
 
 export const Type = () => {
-  const form = useForm();
+  const form = useForm()
 
   return (
     <FormField
       control={form.control}
-      name="type"
+      name='type'
       render={({ field }) => (
         <FormItem>
           <FormLabel>Type</FormLabel>
           <FormControl>
             <Select onValueChange={field.onChange} defaultValue={field.value}>
               <SelectTrigger>
-                <SelectValue placeholder="Type" />
+                <SelectValue placeholder='Type' />
               </SelectTrigger>
               <SelectContent>
                 {typeOptions.map(({ value, label }) => (
@@ -39,10 +40,9 @@ export const Type = () => {
               </SelectContent>
             </Select>
           </FormControl>
-          <FormDescription>???</FormDescription>
+          <FormMessage />
         </FormItem>
       )}
     />
-  );
-};
-
+  )
+}
