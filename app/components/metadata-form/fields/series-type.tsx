@@ -15,11 +15,8 @@ import {
 } from '@/components/ui/select'
 
 import { seriesTypeOptions } from '../field-options'
-import { useMetadataForm } from '../useMetadataForm'
 
-export const SeriesType = () => {
-  const form = useMetadataForm()
-
+export const SeriesType = ({ form }) => {
   return (
     <FormField
       control={form.control}

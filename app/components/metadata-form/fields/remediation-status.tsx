@@ -14,11 +14,8 @@ import {
 } from '@/components/ui/select'
 
 import { remediationStatusOptions } from '../field-options'
-import { useMetadataForm } from '../useMetadataForm'
 
-export const RemediationStatus = () => {
-  const form = useMetadataForm()
-
+export const RemediationStatus = ({ form }) => {
   return (
     <FormField
       control={form.control}

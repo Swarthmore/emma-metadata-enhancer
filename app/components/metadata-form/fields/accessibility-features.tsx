@@ -9,11 +9,8 @@ import {
 import MultiSelectFormField from '@/components/ui/multi-select'
 
 import { accessibilityFeaturesOptions } from '../field-options'
-import { useMetadataForm } from '../useMetadataForm'
 
-export const AccessibilityFeatures = () => {
-  const form = useMetadataForm()
-
+export const AccessibilityFeatures = ({ form }) => {
   return (
     <FormField
       control={form.control}

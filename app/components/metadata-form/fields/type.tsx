@@ -14,11 +14,8 @@ import {
 } from '@/components/ui/select'
 
 import { typeOptions } from '../field-options'
-import { useMetadataForm } from '../useMetadataForm'
 
-export const Type = () => {
-  const form = useMetadataForm()
-
+export const Type = ({ form }) => {
   return (
     <FormField
       control={form.control}

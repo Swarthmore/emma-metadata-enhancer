@@ -7,11 +7,8 @@ import {
   FormMessage
 } from '../../ui/form'
 import { Input } from '../../ui/input'
-import { useMetadataForm } from '../useMetadataForm'
 
-export const OriginalCreator = () => {
-  const form = useMetadataForm()
-
+export const OriginalCreator = ({ form }) => {
   return (
     <FormField
       control={form.control}

@@ -7,11 +7,8 @@ import {
   FormMessage
 } from '../../ui/form'
 import { Input } from '../../ui/input'
-import { useMetadataForm } from '../useMetadataForm'
 
-export const Language = () => {
-  const form = useMetadataForm()
-
+export const Language = ({ form }) => {
   return (
     <FormField
       control={form.control}
