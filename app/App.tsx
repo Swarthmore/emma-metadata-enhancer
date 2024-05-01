@@ -12,20 +12,9 @@ import { ThemeProvider } from './components/theme-provider'
 import { cn } from './lib/utils'
 
 export const App = () => {
-  const handleSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values)
-
-    const codeOutput = getCodeOutput(values)
-
-    console.log(codeOutput)
-  }
-
   return (
     <ThemeProvider defaultTheme='dark' storageKey='theme'>
-      <Layout
-        Form={<MetadataForm onSubmit={handleSubmit} />}
-        Preview={<ModeToggle />}
-      />
+      <Layout Form={<MetadataForm />} Preview={<ModeToggle />} />
     </ThemeProvider>
   )
 }

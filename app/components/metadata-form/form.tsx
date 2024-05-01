@@ -1,97 +1,84 @@
-import { cn } from '@/lib/utils'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { fieldConfig } from '../field-config'
 import { Button } from '../ui/button'
-import { Form, FormControl, FormItem, FormLabel } from '../ui/form'
-import { Input } from '../ui/input'
-import MultiSelectFormField from '../ui/multi-select'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from '../ui/select'
-import { ConnectedFormField } from './connected-field'
+import { FileField } from './file-field'
+import { MultiSelectField } from './multi-select-field'
 import { formSchema } from './schema'
+import { SelectField } from './select-field'
+import { TextField } from './text-field'
 
 export type MetadataFormProps = {
   onSubmit: (values: z.infer<typeof formSchema>) => void
 }
 
-export const MetadataForm = ({
-  defaultValues,
-  onSubmit,
-  onReset
-}: MetadataFormProps) => {
-  const form = useForm({
-    resolver: zodResolver(formSchema)
-  })
+export const MetadataForm = () => {
+  const { control, handleSubmit } = useForm()
 
-  console.table(form.getValues())
+  const onSubmit = (values: unknown) => console.log(values)
+
+  const onReset = () => console.log('Reset')
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className='space-y-4 justify-start'
-        onReset={onReset}
-      >
-        <div
-          id='form-actions'
-          className={cn('inline-flex', 'justify-start', 'w-full')}
-        >
-          <Button type='reset' variant='destructive' className='mr-3'>
-            Reset Form
-          </Button>
-          <Button type='submit'>Update Metadata</Button>
-        </div>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className='space-y-4 justify-start'
+      onReset={onReset}
+    >
+      <div id='form-actions'>
+        <Button type='submit'>Submit</Button>
+      </div>
 
-        {fieldConfig.fields.map((field) => (
-          <ConnectedFormField
-            key={field.name}
-            name={field.name}
-            control={form.control}
-            render={({ field: controllerField }) => (
-              <FormItem>
-                <FormLabel>{field.label}</FormLabel>
-                <FormControl>
-                  {field.type === 'string' && <Input {...controllerField} />}
-                  {field.type === 'select' && (
-                    <Select>
-                      <SelectTrigger>
-                        <SelectValue />
-                        <SelectContent>
-                          {field?.selectOptions?.map((opt) => (
-                            <SelectItem value={opt.value} key={opt.value}>
-                              {opt.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </SelectTrigger>
-                    </Select>
-                  )}
-
-                  {field.type === 'file' && <Input {...controllerField} />}
-
-                  {field.type === 'multi-select' && (
-                    <MultiSelectFormField
-                      options={field.selectOptions}
-                      defaultValue={controllerField.value}
-                      onValueChange={controllerField.onChange}
-                      variant='inverted'
-                      placeholder='none'
-                    />
-                  )}
-                </FormControl>
-              </FormItem>
-            )}
-          />
-        ))}
-      </form>
-    </Form>
+      {fieldConfig.fields
+        .sort((a, b) => a.order - b.order)
+        .map(
+          ({
+            label,
+            name,
+            order,
+            type,
+            defaultValue = '',
+            description,
+            selectOptions
+          }) => {
+            const controllerProps = { name, control, defaultValue }
+            return (
+              <div key={order}>
+                {type === 'file' && (
+                  <FileField
+                    controllerProps={controllerProps}
+                    label={label}
+                    description={description}
+                  />
+                )}
+                {type === 'string' && (
+                  <TextField
+                    controllerProps={controllerProps}
+                    label={label}
+                    description={description}
+                  />
+                )}
+                {type === 'select' && (
+                  <SelectField
+                    controllerProps={controllerProps}
+                    label={label}
+                    description={description}
+                    options={selectOptions || []}
+                  />
+                )}
+                {type === 'multi-select' && (
+                  <MultiSelectField
+                    controllerProps={controllerProps}
+                    label={label}
+                    description={description}
+                    options={selectOptions || []}
+                  />
+                )}
+              </div>
+            )
+          }
+        )}
+    </form>
   )
 }

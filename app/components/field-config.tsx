@@ -23,7 +23,8 @@ type FieldConfig = {
     description?: string
     type: FieldType
     order: number
-    onFileChange?: (file: File) => any
+    defaultValue?: string
+    onFileChange?: (file: File) => void
     selectOptions?: { value: string; label: string }[]
   }[]
 }
@@ -35,12 +36,14 @@ export const fieldConfig: FieldConfig = {
       type: 'file',
       name: 'file',
       label: 'HTML File to Enhance',
+      description: 'This HTML file will become infused with metadata',
       order: 1
     },
     {
       name: 'originalCreator',
       label: 'Original creator',
       type: 'string',
+      description: 'The original creator of the document',
       order: 10
     },
     {
