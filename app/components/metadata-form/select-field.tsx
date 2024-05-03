@@ -21,14 +21,15 @@ export const SelectField = ({
   label,
   description,
   options,
-  controllerProps
+  controllerProps,
+  ...rest
 }: SelectFieldProps) => {
   const { field, fieldState } = useController(controllerProps)
 
   return (
     <div>
       <Label>{label}</Label>
-      <Select onValueChange={field.onChange} defaultValue={''}>
+      <Select onValueChange={field.onChange} defaultValue={''} {...rest}>
         <SelectTrigger>
           <SelectValue placeholder={controllerProps.name} />
         </SelectTrigger>

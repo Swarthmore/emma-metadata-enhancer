@@ -1,20 +1,19 @@
 import { head as headTemplate } from '@/templates/head'
 import mustache from 'mustache'
 import { ReactNode } from 'react'
-import { CopyBlock } from 'react-code-blocks'
-import { z } from 'zod'
+import { CopyBlock, a11yDark } from 'react-code-blocks'
 
 import './App.css'
 import { MetadataForm } from './components/metadata-form/form'
-import { formSchema } from './components/metadata-form/schema'
-import { ModeToggle } from './components/mode-toggle'
 import { ThemeProvider } from './components/theme-provider'
+import { ScrollArea } from './components/ui/scroll-area'
 import { cn } from './lib/utils'
 
 export const App = () => {
+  const code = `<head></head>`
   return (
     <ThemeProvider defaultTheme='dark' storageKey='theme'>
-      <Layout Form={<MetadataForm />} Preview={<ModeToggle />} />
+      <Layout Form={<MetadataForm />} Preview={<></>} />
     </ThemeProvider>
   )
 }
@@ -24,15 +23,8 @@ const getCodeOutput = (templateData = {}) => {
   return mustache.render(headTemplate, templateData)
 }
 
-const Preview = () => {
-  return (
-    <CopyBlock
-      text={`<head>Nothing here yet</head>`}
-      language='html'
-      showLineNumbers={false}
-      wrapLongLines
-    />
-  )
+const Preview = ({ code }: { code: string }) => {
+  return <CopyBlock text={code} language='html' theme={a11yDark} />
 }
 
 type LayoutProps = {
@@ -42,7 +34,11 @@ type LayoutProps = {
 
 const Layout = ({ Form, Preview }: LayoutProps) => (
   <div className={cn('w-full', 'flex')}>
-    <div className={cn('m-3')}>{Form}</div>
-    <div className={cn('m-3')}>{Preview}</div>
+    <ScrollArea className={cn('p-5', 'max-h-screen', 'w-full')}>
+      {Form}
+    </ScrollArea>
+    <ScrollArea className={cn('p-5', 'max-h-screen', 'w-full')}>
+      {Preview}
+    </ScrollArea>
   </div>
 )

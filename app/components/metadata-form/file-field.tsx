@@ -11,14 +11,21 @@ export type FileFieldProps = {
 export const FileField = ({
   label,
   description,
-  controllerProps
+  controllerProps,
+  ...rest
 }: FileFieldProps) => {
   const { field, fieldState } = useController(controllerProps)
 
   return (
     <div>
       <Label>{label}</Label>
-      <Input {...field} placeholder={controllerProps.name} type='file' />
+      <Input
+        {...field}
+        placeholder={controllerProps.name}
+        type='file'
+        accept='text/html'
+        {...rest}
+      />
       {description && <p className='text-sm'>{description}</p>}
       {fieldState?.error?.message && <p>{fieldState.error.message}</p>}
     </div>

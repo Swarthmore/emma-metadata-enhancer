@@ -14,11 +14,36 @@ export type MetadataFormProps = {
 }
 
 export const MetadataForm = () => {
-  const { control, handleSubmit } = useForm()
+  const { control, handleSubmit, setValue } = useForm()
 
   const onSubmit = (values: unknown) => console.log(values)
 
   const onReset = () => console.log('Reset')
+
+  const prefillForm = () => {
+    setValue('originalCreator', 'John Doe')
+    setValue('filename', 'sporkeh.exe')
+    setValue('language', 'en')
+    setValue('title', 'I did it')
+    setValue('partsRemediated', 'All')
+    setValue('remediationComments', 'lorem ipsum...')
+    setValue('accessibilitySummary', 'lorem ipsum...')
+    setValue(
+      'identifiers',
+      'A book, Another book, Yet another book, This one is a magazine'
+    )
+    setValue('publisher', 'Penguin')
+    setValue(
+      'relatedIdentifiers',
+      'A book, Another book, Yet another book, This one is a magazine'
+    )
+    setValue('seriesTitle', 'Wish it, Want it, Do it')
+    setValue('seriesType', 'Self-help')
+    setValue('seriesPosition', 'Chapter 2')
+    setValue('remediatedBy', 'Joe Biden')
+
+    alert('Form has been prefilled')
+  }
 
   return (
     <form
@@ -26,7 +51,9 @@ export const MetadataForm = () => {
       className='space-y-4 justify-start'
       onReset={onReset}
     >
-      <div id='form-actions'>
+      <div id='form-actions' className='space-x-2'>
+        <Button onClick={prefillForm}>Prefill Form</Button>
+        <Button type='reset'>Reset</Button>
         <Button type='submit'>Submit</Button>
       </div>
 
@@ -40,7 +67,8 @@ export const MetadataForm = () => {
             type,
             defaultValue = '',
             description,
-            selectOptions
+            selectOptions,
+            extraInputProps
           }) => {
             const controllerProps = { name, control, defaultValue }
             return (
@@ -50,6 +78,7 @@ export const MetadataForm = () => {
                     controllerProps={controllerProps}
                     label={label}
                     description={description}
+                    {...extraInputProps}
                   />
                 )}
                 {type === 'string' && (
@@ -57,6 +86,7 @@ export const MetadataForm = () => {
                     controllerProps={controllerProps}
                     label={label}
                     description={description}
+                    {...extraInputProps}
                   />
                 )}
                 {type === 'select' && (
@@ -65,6 +95,7 @@ export const MetadataForm = () => {
                     label={label}
                     description={description}
                     options={selectOptions || []}
+                    {...extraInputProps}
                   />
                 )}
                 {type === 'multi-select' && (
@@ -73,6 +104,7 @@ export const MetadataForm = () => {
                     label={label}
                     description={description}
                     options={selectOptions || []}
+                    {...extraInputProps}
                   />
                 )}
               </div>

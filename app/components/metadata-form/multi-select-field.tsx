@@ -3,13 +3,6 @@ import { ReactNode } from 'react'
 import { UseControllerProps, useController } from 'react-hook-form'
 
 import MultiSelectFormField from '../ui/multi-select'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from '../ui/select'
 
 export type MultiSelectFieldProps = {
   label: string

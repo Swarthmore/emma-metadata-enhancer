@@ -6,6 +6,7 @@ import {
   remediationSourceOptions,
   typeOptions
 } from './metadata-form/field-options'
+import { InputProps } from './ui/input'
 
 type FieldType =
   | 'file'
@@ -26,10 +27,10 @@ type FieldConfig = {
     defaultValue?: string
     onFileChange?: (file: File) => void
     selectOptions?: { value: string; label: string }[]
+    extraInputProps?: InputProps
   }[]
 }
 
-// Field config
 export const fieldConfig: FieldConfig = {
   fields: [
     {
@@ -37,20 +38,23 @@ export const fieldConfig: FieldConfig = {
       name: 'file',
       label: 'HTML File to Enhance',
       description: 'This HTML file will become infused with metadata',
-      order: 1
+      order: 1,
+      extraInputProps: { required: true }
     },
     {
       name: 'originalCreator',
       label: 'Original creator',
       type: 'string',
       description: 'The original creator of the document',
-      order: 10
+      order: 10,
+      extraInputProps: { required: true }
     },
     {
       name: 'filename',
       label: 'Filename',
       type: 'string',
-      order: 20
+      order: 20,
+      extraInputProps: { required: true }
     },
     {
       name: 'remediationComplete',
@@ -60,33 +64,38 @@ export const fieldConfig: FieldConfig = {
         { value: 'Yes', label: 'Yes' },
         { value: 'No', label: 'No' }
       ],
-      order: 30
+      order: 30,
+      extraInputProps: { required: true }
     },
     {
       name: 'format',
       label: 'Format',
       type: 'select',
       selectOptions: formatOptions,
-      order: 40
+      order: 40,
+      extraInputProps: { required: true }
     },
     {
       name: 'language',
       label: 'Language',
       type: 'string',
-      order: 50
+      order: 50,
+      extraInputProps: { required: true }
     },
     {
       name: 'title',
       label: 'Title',
       type: 'string',
-      order: 60
+      order: 60,
+      extraInputProps: { required: true }
     },
     {
       name: 'type',
       label: 'Type',
       type: 'select',
       selectOptions: typeOptions,
-      order: 70
+      order: 70,
+      extraInputProps: { required: true }
     },
     {
       name: 'partsRemediated',

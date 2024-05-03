@@ -11,14 +11,15 @@ export type TextFieldProps = {
 export const TextField = ({
   label,
   description,
-  controllerProps
+  controllerProps,
+  ...rest
 }: TextFieldProps) => {
   const { field, fieldState } = useController(controllerProps)
 
   return (
     <div>
       <Label>{label}</Label>
-      <Input {...field} placeholder={controllerProps.name} />
+      <Input {...field} placeholder={controllerProps.name} {...rest} />
       {description && <p className='text-sm'>{description}</p>}
       {fieldState?.error?.message && <p>{fieldState.error.message}</p>}
     </div>
