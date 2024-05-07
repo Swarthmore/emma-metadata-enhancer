@@ -13,10 +13,8 @@ export type MetadataFormProps = {
   onSubmit: (values: z.infer<typeof formSchema>) => void
 }
 
-export const MetadataForm = () => {
+export const MetadataForm = ({ onSubmit }) => {
   const { control, handleSubmit, setValue } = useForm()
-
-  const onSubmit = (values: unknown) => console.log(values)
 
   const onReset = () => console.log('Reset')
 

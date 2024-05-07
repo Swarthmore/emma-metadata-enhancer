@@ -1,30 +1,46 @@
 import { head as headTemplate } from '@/templates/head'
 import mustache from 'mustache'
-import { ReactNode } from 'react'
-import { CopyBlock, a11yDark } from 'react-code-blocks'
+import { ReactNode, useState } from 'react'
 
 import './App.css'
+import { CodeBlock } from './components/code-block'
 import { MetadataForm } from './components/metadata-form/form'
 import { ThemeProvider } from './components/theme-provider'
 import { ScrollArea } from './components/ui/scroll-area'
 import { cn } from './lib/utils'
 
 export const App = () => {
-  const code = `<head></head>`
+  const [codeOutput, setCodeOutput] = useState(
+    '<head>Submit the form to render code</head>'
+  )
+
+  console.log({ codeOutput })
+
   return (
     <ThemeProvider defaultTheme='dark' storageKey='theme'>
-      <Layout Form={<MetadataForm />} Preview={<></>} />
+      <Layout
+        Form={
+          <MetadataForm
+            onSubmit={(metadata) => setCodeOutput(getCodeOutput(metadata))}
+          />
+        }
+        Preview={<Preview code={codeOutput} />}
+      />
     </ThemeProvider>
   )
 }
 
 // Generate the HTML code for the output view by passing the supplied metadata through the mustache template
-const getCodeOutput = (templateData = {}) => {
+const getCodeOutput = (templateData) => {
   return mustache.render(headTemplate, templateData)
 }
 
 const Preview = ({ code }: { code: string }) => {
-  return <CopyBlock text={code} language='html' theme={a11yDark} />
+  return (
+    <div>
+      <CodeBlock code={code} />
+    </div>
+  )
 }
 
 type LayoutProps = {
