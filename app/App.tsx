@@ -7,21 +7,43 @@ import { CodeBlock } from './components/code-block'
 import { MetadataForm } from './components/metadata-form/form'
 import { ThemeProvider } from './components/theme-provider'
 import { ScrollArea } from './components/ui/scroll-area'
+import { Toaster } from './components/ui/toaster'
+import { useToast } from './components/ui/use-toast'
 import { cn } from './lib/utils'
 
+
 export const App = () => {
+
+  const { toast } = useToast()
+
   const [codeOutput, setCodeOutput] = useState(
     '<head>Submit the form to render code</head>'
   )
-
-  console.log({ codeOutput })
 
   return (
     <ThemeProvider defaultTheme='dark' storageKey='theme'>
       <Layout
         Form={
           <MetadataForm
-            onSubmit={(metadata) => setCodeOutput(getCodeOutput(metadata))}
+            onSubmit={(fields) => {
+
+              const { accessibilityFeatures, accessibilityHazards, ...rest } = fields
+
+              const mustacheCode = getCodeOutput({ 
+                accessibilityFeatures: accessibilityFeatures ? accessibilityFeatures.join(',') : '', // mustache will discard the field if we give it an empty string
+                accessibilityHazards: accessibilityHazards ? accessibilityHazards.join(',') : '',
+                ...rest 
+              })
+
+              setCodeOutput(
+                mustacheCode.replace(/(^[ \t]*\n)/gm, "")
+              )
+
+              toast({
+                description: 'Metadata Updated'
+              })
+
+            }}
           />
         }
         Preview={<Preview code={codeOutput} />}
@@ -56,5 +78,6 @@ const Layout = ({ Form, Preview }: LayoutProps) => (
     <ScrollArea className={cn('p-5', 'max-h-screen', 'w-full')}>
       {Preview}
     </ScrollArea>
+    <Toaster/>
   </div>
 )

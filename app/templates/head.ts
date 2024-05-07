@@ -98,11 +98,11 @@ export const head = `
     {{/remediationSource}}
 
     {{#title}}
-      <title>{{title}}</title>
+    <title>{{title}}</title>
     {{/title}}
     
     {{^title}}
-        <title>No title exists for this document</title> 
+    <title>No title exists for this document</title> 
     {{/title}}
 </head>
 `

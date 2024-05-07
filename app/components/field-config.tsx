@@ -4,6 +4,7 @@ import {
   formatOptions,
   remediationAspectsOptions,
   remediationSourceOptions,
+  remediationStatusOptions,
   typeOptions
 } from './metadata-form/field-options'
 import { InputProps } from './ui/input'
@@ -36,14 +37,14 @@ export const fieldConfig: FieldConfig = {
     {
       type: 'file',
       name: 'file',
-      label: 'HTML File to Enhance',
+      label: 'HTML File to Enhance *',
       description: 'This HTML file will become infused with metadata',
       order: 1,
       extraInputProps: { required: true }
     },
     {
       name: 'originalCreator',
-      label: 'Original creator',
+      label: 'Original creator *',
       type: 'string',
       description: 'The original creator of the document',
       order: 10,
@@ -51,14 +52,14 @@ export const fieldConfig: FieldConfig = {
     },
     {
       name: 'filename',
-      label: 'Filename',
+      label: 'Filename *',
       type: 'string',
       order: 20,
       extraInputProps: { required: true }
     },
     {
       name: 'remediationComplete',
-      label: 'Remediation is complete',
+      label: 'Remediation is complete *',
       type: 'select',
       selectOptions: [
         { value: 'Yes', label: 'Yes' },
@@ -69,7 +70,7 @@ export const fieldConfig: FieldConfig = {
     },
     {
       name: 'format',
-      label: 'Format',
+      label: 'Format *',
       type: 'select',
       selectOptions: formatOptions,
       order: 40,
@@ -77,21 +78,29 @@ export const fieldConfig: FieldConfig = {
     },
     {
       name: 'language',
-      label: 'Language',
+      label: 'Language *',
       type: 'string',
       order: 50,
       extraInputProps: { required: true }
     },
     {
+      name: 'remediationStatus',
+      label: 'Remediation Status *',
+      type: 'select',
+      selectOptions: remediationStatusOptions,
+      order: 55,
+      extraInputProps: { required: true }
+    },
+    {
       name: 'title',
-      label: 'Title',
+      label: 'Title *',
       type: 'string',
       order: 60,
       extraInputProps: { required: true }
     },
     {
       name: 'type',
-      label: 'Type',
+      label: 'Type *',
       type: 'select',
       selectOptions: typeOptions,
       order: 70,
