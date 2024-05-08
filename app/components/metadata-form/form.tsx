@@ -46,7 +46,7 @@ export const MetadataForm = ({ onSubmit }: MetadataFormProps) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className='space-y-4 justify-start'
+      className='space-y-4 justify-start sticky top-0'
       onReset={onReset}
     >
       <div id='form-actions' className='space-x-2'>
