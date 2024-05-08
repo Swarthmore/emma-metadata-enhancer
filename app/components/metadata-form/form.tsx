@@ -46,13 +46,20 @@ export const MetadataForm = ({ onSubmit }: MetadataFormProps) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className='space-y-4 justify-start sticky top-0'
+      className='space-y-4 justify-start'
       onReset={onReset}
     >
-      <div id='form-actions' className='space-x-2'>
-        <Button onClick={prefillForm}>Prefill Form</Button>
-        <Button type='reset'>Reset</Button>
-        <Button type='submit'>Submit</Button>
+      <div
+        id='form-actions'
+        className='space-x-2 sticky top-0 bg-zinc-300 dark:bg-zinc-900 p-5 rounded border rounded-md'
+      >
+        <h1 className='text-2xl mb-3'>EMMA Metadata Enhancer</h1>
+        <Button onClick={prefillForm} variant='ghost'>
+          Prefill Form
+        </Button>
+        <Button type='submit' variant='secondary'>
+          Submit
+        </Button>
       </div>
 
       {fieldConfig.fields

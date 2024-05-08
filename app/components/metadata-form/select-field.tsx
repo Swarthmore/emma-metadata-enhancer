@@ -29,7 +29,11 @@ export const SelectField = ({
   return (
     <div>
       <Label>{label}</Label>
-      <Select  onValueChange={field.onChange} defaultValue={options[0].value} {...rest}>
+      <Select
+        onValueChange={field.onChange}
+        defaultValue={options[0].value}
+        {...rest}
+      >
         <SelectTrigger>
           <SelectValue placeholder={controllerProps.name} />
         </SelectTrigger>

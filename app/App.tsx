@@ -11,9 +11,7 @@ import { Toaster } from './components/ui/toaster'
 import { useToast } from './components/ui/use-toast'
 import { cn } from './lib/utils'
 
-
 export const App = () => {
-
   const { toast } = useToast()
 
   const [codeOutput, setCodeOutput] = useState(
@@ -26,23 +24,24 @@ export const App = () => {
         Form={
           <MetadataForm
             onSubmit={(fields) => {
+              const { accessibilityFeatures, accessibilityHazards, ...rest } =
+                fields
 
-              const { accessibilityFeatures, accessibilityHazards, ...rest } = fields
-
-              const mustacheCode = getCodeOutput({ 
-                accessibilityFeatures: accessibilityFeatures ? accessibilityFeatures.join(',') : '', // mustache will discard the field if we give it an empty string
-                accessibilityHazards: accessibilityHazards ? accessibilityHazards.join(',') : '',
-                ...rest 
+              const mustacheCode = getCodeOutput({
+                accessibilityFeatures: accessibilityFeatures
+                  ? accessibilityFeatures.join(',')
+                  : '', // mustache will discard the field if we give it an empty string
+                accessibilityHazards: accessibilityHazards
+                  ? accessibilityHazards.join(',')
+                  : '',
+                ...rest
               })
 
-              setCodeOutput(
-                mustacheCode.replace(/(^[ \t]*\n)/gm, "")
-              )
+              setCodeOutput(mustacheCode.replace(/(^[ \t]*\n)/gm, ''))
 
               toast({
                 description: 'Metadata Updated'
               })
-
             }}
           />
         }
@@ -73,11 +72,11 @@ type LayoutProps = {
 const Layout = ({ Form, Preview }: LayoutProps) => (
   <div className={cn('w-full', 'flex')}>
     <ScrollArea className={cn('p-5', 'max-h-screen', 'w-full')}>
-      {Form}
+      <main>{Form}</main>
     </ScrollArea>
     <ScrollArea className={cn('p-5', 'max-h-screen', 'w-full')}>
-      {Preview}
+      <aside>{Preview}</aside>
     </ScrollArea>
-    <Toaster/>
+    <Toaster />
   </div>
 )
