@@ -1,9 +1,11 @@
+import { useCallback, useEffect, useState } from 'react'
+import { useDropzone } from 'react-dropzone'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { fieldConfig } from '../field-config'
 import { Button } from '../ui/button'
-import { FileField } from './file-field'
+import { Input } from '../ui/input'
 import { MultiSelectField } from './multi-select-field'
 import { formSchema } from './schema'
 import { SelectField } from './select-field'
@@ -11,9 +13,22 @@ import { TextField } from './text-field'
 
 export type MetadataFormProps = {
   onSubmit: (values: z.infer<typeof formSchema>) => void
+  onFileChange: ({
+    filename,
+    filesize,
+    fileText
+  }: {
+    filename: string
+    filesize: string
+    fileText: string
+  }) => void
 }
 
-export const MetadataForm = ({ onSubmit }: MetadataFormProps) => {
+export const MetadataForm = ({ onSubmit, onFileChange }: MetadataFormProps) => {
+  const [filename, setFilename] = useState('')
+  const [fileText, setFileText] = useState('')
+  const [filesize, setFilesize] = useState('')
+
   const { control, handleSubmit, setValue } = useForm()
 
   const onReset = () => console.log('Reset')
@@ -42,6 +57,39 @@ export const MetadataForm = ({ onSubmit }: MetadataFormProps) => {
 
     alert('Form has been prefilled')
   }
+
+  // Handle what happens when a file is dropped into the dropzone
+  const handleDrop = useCallback((files: File[]) => {
+    const textDecoder = new TextDecoder('utf-8')
+    files.forEach((file) => {
+      const reader = new FileReader()
+      reader.onabort = () => console.log('FileReader was aborted')
+      reader.onerror = () => console.log('FileReader error')
+      reader.onload = () => {
+        const buff = reader.result
+        const txt = textDecoder.decode(buff)
+        const parser = new DOMParser()
+        const htmlDoc = parser.parseFromString(txt, 'text/html')
+        const body = htmlDoc.querySelector('body')
+        setFileText(body.outerHTML)
+        setFilename(file.name)
+        setFilesize(file.size.toString())
+      }
+      reader.readAsArrayBuffer(file)
+    })
+  }, [])
+
+  // Set up react-dropzone to accept only html files
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop: handleDrop,
+    accept: {
+      'text/html': ['.html', '.htm']
+    }
+  })
+
+  useEffect(() => {
+    onFileChange({ fileText, filename, filesize })
+  }, [fileText, filename, filesize])
 
   return (
     <form
@@ -79,12 +127,27 @@ export const MetadataForm = ({ onSubmit }: MetadataFormProps) => {
             return (
               <div key={order}>
                 {type === 'file' && (
-                  <FileField
-                    controllerProps={controllerProps}
-                    label={label}
-                    description={description}
-                    {...extraInputProps}
-                  />
+                  <div
+                    {...getRootProps()}
+                    className={`border-4 p-5 my-3 ${fileText.length > 0 ? 'border-solid border-green-500 bg-green-400 text-black' : 'border-dashed border-sky-500'}`}
+                  >
+                    <Input {...getInputProps()} />
+                    {fileText.length > 0 ? (
+                      <>
+                        <p>
+                          Uploaded {filename} - {filesize} bytes
+                        </p>
+                        <p>
+                          Drag 'n' drop some files here, or click to replace{' '}
+                          {filename}
+                        </p>
+                      </>
+                    ) : (
+                      <p>
+                        Drag 'n' drop some files here, or click to select files
+                      </p>
+                    )}
+                  </div>
                 )}
                 {type === 'string' && (
                   <TextField

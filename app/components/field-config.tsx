@@ -39,8 +39,7 @@ export const fieldConfig: FieldConfig = {
       name: 'file',
       label: 'HTML File to Enhance *',
       description: 'This HTML file will become infused with metadata',
-      order: 1,
-      extraInputProps: { required: true }
+      order: 1
     },
     {
       name: 'originalCreator',

@@ -12,6 +12,7 @@ export const FileField = ({
   label,
   description,
   controllerProps,
+  onFileChange,
   ...rest
 }: FileFieldProps) => {
   const { field, fieldState } = useController(controllerProps)
@@ -24,7 +25,7 @@ export const FileField = ({
         placeholder={controllerProps.name}
         type='file'
         accept='text/html'
-        {...rest}
+        onChange={onFileChange}
       />
       {description && <p className='text-sm'>{description}</p>}
       {fieldState?.error?.message && <p>{fieldState.error.message}</p>}
