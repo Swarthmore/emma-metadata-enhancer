@@ -17,6 +17,9 @@ export const App = () => {
   const [head, setHead] = useState('')
   const [body, setBody] = useState('')
 
+  const [showPreview, setShowPreview] = useState(false)
+  const [showHead, setShowHead] = useState(false)
+
   const onFileChange = ({ fileText }) => {
     const generatedBody = getCodeOutput(previewTemplate, {
       content: fileText
@@ -36,14 +39,21 @@ export const App = () => {
         : '',
       ...rest
     })
+
     setHead(generatedHead.replace(/(^[ \t]*\n)/gm, ''))
 
     toast({
       description: 'Metadata Updated'
     })
-  }
 
-  console.log({ body })
+    if (head) {
+      setShowHead(true)
+    }
+
+    if (body) {
+      setShowPreview(true)
+    }
+  }
 
   return (
     <ThemeProvider defaultTheme='dark' storageKey='theme'>
@@ -53,11 +63,16 @@ export const App = () => {
         }
         Aside={
           <div>
-            <CodeBlock code={head} />
+            {showHead && <CodeBlock code={head} />}
 
-            <div id='document-preview' className={cn('my-3', 'border', 'p-5')}>
-              <div dangerouslySetInnerHTML={{ __html: htmlDecode(body) }} />
-            </div>
+            {showPreview && (
+              <div
+                id='document-preview'
+                className={cn('my-3', 'border', 'p-5')}
+              >
+                <div dangerouslySetInnerHTML={{ __html: htmlDecode(body) }} />
+              </div>
+            )}
           </div>
         }
       />
