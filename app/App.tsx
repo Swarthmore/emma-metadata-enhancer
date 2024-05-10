@@ -50,7 +50,7 @@ export const App = () => {
       setShowHead(true)
     }
 
-    if (body) {
+    if (head && body) {
       setShowPreview(true)
     }
   }
@@ -63,7 +63,11 @@ export const App = () => {
         }
         Aside={
           <div>
-            {showHead && <CodeBlock code={head} />}
+            {showHead ? (
+              <CodeBlock code={head} />
+            ) : (
+              <div>Submit the form to generated metadata.</div>
+            )}
 
             {showPreview && (
               <div
