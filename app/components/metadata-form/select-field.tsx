@@ -37,7 +37,7 @@ export const SelectField = ({
         <SelectTrigger>
           <SelectValue placeholder={controllerProps.name} />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="max-h-48">
           {options.map(({ value, label }) => (
             <SelectItem key={value} value={value}>
               {label}
