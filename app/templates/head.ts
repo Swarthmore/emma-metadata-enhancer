@@ -6,103 +6,104 @@ export const head = `
     
     <!-- EMMA Metadata -->
     {{#id}}
-    <meta name="id" content="{{id}}">
+    <meta name="id" content="{{{id}}}">
     {{/id}}
-    
+
     {{#originalCreator}}
-    <meta name="originalCreator" content="{{originalCreator}}">
+    <meta name="originalCreator" content="{{{originalCreator}}}">
     {{/originalCreator}}
-    
+
     {{#filename}}
-    <meta name="filename" content="{{filename}}">
+    <meta name="filename" content="{{{filename}}}">
     {{/filename}}
 
     {{#remediationComplete}}
-    <meta name="remediationComplete" content="{{remediationComplete}}">
+    <meta name="remediationComplete" content="{{{remediationComplete}}}">
     {{/remediationComplete}}
 
     {{#format}}
-    <meta name="format" content="{{format}}">
+    <meta name="format" content="{{{format}}}">
     {{/format}}
 
     {{#language}}
-    <meta name="language" content="{{language}}">
+    <meta name="language" content="{{{language}}}">
     {{/language}}
 
     {{#partsRemediated}}
-    <meta name="partsRemediated" content="{{partsRemediated}}">
+    <meta name="partsRemediated" content="{{{partsRemediated}}}">
     {{/partsRemediated}}
 
     {{#remediationComments}}
-    <meta name="remediationComments" content="{{remediationComments}}">
+    <meta name="remediationComments" content="{{{remediationComments}}}">
     {{/remediationComments}}
 
     {{#remediationStatus}}
-    <meta name="remediationStatus" content="{{remediationStatus}}">
+    <meta name="remediationStatus" content="{{{remediationStatus}}}">
     {{/remediationStatus}}
 
     {{#title}}
-    <meta name="title" content="{{title}}">
+    <meta name="title" content="{{{title}}}">
     {{/title}}
 
     {{#type}}
-    <meta name="type" content="{{type}}">
+    <meta name="type" content="{{{type}}}">
     {{/type}}
 
     {{#accessibilityFeatures}}
-    <meta name="accessibilityFeatures" content="{{accessibilityFeatures}}">
+    <meta name="accessibilityFeatures" content="{{{accessibilityFeatures}}}">
     {{/accessibilityFeatures}}
 
     {{#accessibilityHazards}}
-    <meta name="accessibilityHazards" content="{{accessibilityHazards}}">
+    <meta name="accessibilityHazards" content="{{{accessibilityHazards}}}">
     {{/accessibilityHazards}}
 
     {{#accessibilitySummary}}
-    <meta name="accessibilitySummary" content="{{accessibilitySummary}}">
+    <meta name="accessibilitySummary" content="{{{accessibilitySummary}}}">
     {{/accessibilitySummary}}
 
     {{#identifiers}}
-    <meta name="identifiers" content="{{identifiers}}">
+    <meta name="identifiers" content="{{{identifiers}}}">
     {{/identifiers}}
 
     {{#publisher}}
-    <meta name="publisher" content="{{publisher}}">
+    <meta name="publisher" content="{{{publisher}}}">
     {{/publisher}}
 
     {{#relatedIdentifiers}}
-    <meta name="relatedIdentifiers" content="{{relatedIdentifiers}}">
+    <meta name="relatedIdentifiers" content="{{{relatedIdentifiers}}}">
     {{/relatedIdentifiers}}
 
     {{#remediationAspects}}
-    <meta name="remediationAspects" content="{{remediationAspects}}">
+    <meta name="remediationAspects" content="{{{remediationAspects}}}">
     {{/remediationAspects}}
 
     {{#remediatedBy}}
-    <meta name="remediatedBy" content="{{remediatedBy}}">
+    <meta name="remediatedBy" content="{{{remediatedBy}}}">
     {{/remediatedBy}}
 
     {{#seriesPosition}}
-    <meta name="seriesPosition" content="{{seriesPosition}}">
+    <meta name="seriesPosition" content="{{{seriesPosition}}}">
     {{/seriesPosition}}
 
     {{#seriesTitle}}
-    <meta name="seriesTitle" content="{{seriesTitle}}">
+    <meta name="seriesTitle" content="{{{seriesTitle}}}">
     {{/seriesTitle}}
 
     {{#seriesType}}
-    <meta name="seriesType" content="{{seriesType}}">
+    <meta name="seriesType" content="{{{seriesType}}}">
     {{/seriesType}}
 
     {{#remediationSource}}
-    <meta name="remediationSource" content="{{remediationSource}}">
+    <meta name="remediationSource" content="{{{remediationSource}}}">
     {{/remediationSource}}
 
     {{#title}}
-    <title>{{title}}</title>
+    <title>{{{title}}}</title>
     {{/title}}
-    
+
     {{^title}}
-    <title>No title exists for this document</title> 
+    <title>No title exists for this document</title>
     {{/title}}
+
 </head>
 `
