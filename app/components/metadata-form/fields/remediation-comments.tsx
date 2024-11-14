@@ -15,7 +15,7 @@ export const RemediationComments = ({ form }) => {
       name='remediationComments'
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Remediation Comments</FormLabel>
+          <FormLabel>Remediation Comments *</FormLabel>
           <FormControl>
             <Input placeholder='Remediation comments' {...field} />
           </FormControl>

@@ -113,9 +113,10 @@ export const fieldConfig: FieldConfig = {
     },
     {
       name: 'remediationComments',
-      label: 'Remediation comments',
+      label: 'Remediation comments *',
       type: 'string',
-      order: 90
+      order: 90,
+      extraInputProps: { required: true }
     },
     {
       name: 'accessibilityFeatures',
