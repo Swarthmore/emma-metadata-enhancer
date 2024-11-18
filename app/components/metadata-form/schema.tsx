@@ -39,7 +39,7 @@ export const formSchema = z.object({
   ),
   language: z.string().min(1),
   partsRemediated: z.string().min(1),
-  remediationComments: z.string().optional(),
+  remediationComments: z.string().min(1),
   remediationStatus: optionSchema.refine((data) =>
     remediationStatusOptions.map((option) => option.value).includes(data.value)
   ),
