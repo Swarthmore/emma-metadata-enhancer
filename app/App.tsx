@@ -32,10 +32,10 @@ export const App = () => {
 
     const generatedHead = getCodeOutput(headTemplate, {
       accessibilityFeatures: accessibilityFeatures
-        ? accessibilityFeatures.join(',')
+        ? accessibilityFeatures.join(';')
         : '', // mustache will discard the field if we give it an empty string
       accessibilityHazards: accessibilityHazards
-        ? accessibilityHazards.join(',')
+        ? accessibilityHazards.join(';')
         : '',
       ...rest
     })
