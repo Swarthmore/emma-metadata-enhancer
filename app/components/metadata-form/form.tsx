@@ -34,26 +34,26 @@ export const MetadataForm = ({ onSubmit, onFileChange }: MetadataFormProps) => {
   const onReset = () => console.log('Reset')
 
   const prefillForm = () => {
-    setValue('originalCreator', 'John Doe')
-    setValue('filename', 'sporkeh.exe')
-    setValue('language', 'en')
-    setValue('title', 'I did it')
-    setValue('partsRemediated', 'All')
-    setValue('remediationComments', 'lorem ipsum...')
-    setValue('accessibilitySummary', 'lorem ipsum...')
+    setValue('originalCreator', '-')
+    setValue('filename', '-')
+    setValue('language', '-')
+    setValue('title', '-')
+    setValue('partsRemediated', '-')
+    setValue('remediationComments', '-')
+    setValue('accessibilitySummary', '-')
     setValue(
       'identifiers',
-      'A book, Another book, Yet another book, This one is a magazine'
+      '-'
     )
-    setValue('publisher', 'Penguin')
+    setValue('publisher', '-')
     setValue(
       'relatedIdentifiers',
-      'A book, Another book, Yet another book, This one is a magazine'
+      '-'
     )
-    setValue('seriesTitle', 'Wish it, Want it, Do it')
-    setValue('seriesType', 'Self-help')
-    setValue('seriesPosition', 'Chapter 2')
-    setValue('remediatedBy', 'Joe Biden')
+    setValue('seriesTitle', '-')
+    setValue('seriesType', '-')
+    setValue('seriesPosition', '-')
+    setValue('remediatedBy', '-')
 
     alert('Form has been prefilled')
   }
@@ -74,6 +74,80 @@ export const MetadataForm = ({ onSubmit, onFileChange }: MetadataFormProps) => {
         setFileText(body.outerHTML)
         setFilename(file.name)
         setFilesize(file.size.toString())
+        // Attempt to parse any maetadata that already exists so we can prefill the form
+        const head = htmlDoc.querySelector('head')
+        if (!head) {
+          return
+        }
+
+        const originalCreator = head.querySelector('meta[name="originalCreator"]')
+        const language = head.querySelector('meta[name="language"]')
+        const partsRemediated = head.querySelector('meta[name="partsRemediated"]')
+        const remediationComments = head.querySelector('meta[name="remediationComments"]')
+        const title = head.querySelector('meta[name="title"]')
+        const accessibilitySummary = head.querySelector('meta[name="accessibilitySummary"]')
+        const identifiers = head.querySelector('meta[name="identifiers"]')
+        const publisher = head.querySelector('meta[name="publisher"]')
+        const relatedIdentifiers = head.querySelector('meta[name="relatedIdentifiers"]')
+        const seriesTitle = head.querySelector('meta[name="seriesTitle"]')
+        const seriesType = head.querySelector('meta[name="seriesType"]')
+        const seriesPosition = head.querySelector('meta[name="seriesPosition"]')
+        const remediatedBy = head.querySelector('meta[name="remediatedBy"]')
+
+        if (originalCreator) {
+          console.info('originalCreator', originalCreator.getAttribute('content'))
+          setValue('originalCreator', originalCreator.getAttribute('content'))
+        }
+
+        if (language) {
+          setValue('language', language.getAttribute('content'))
+        }
+
+        if (partsRemediated) {
+          setValue('partsRemediated', partsRemediated.getAttribute('content'))
+        }
+
+        if (remediationComments) {
+          setValue('remediationComments', remediationComments.getAttribute('content'))
+        }
+
+        if (title) {
+          setValue('title', title.getAttribute('content'))
+        }
+
+        if (accessibilitySummary) {
+          setValue('accessibilitySummary', accessibilitySummary.getAttribute('content'))
+        }
+
+
+        if (identifiers) {
+          setValue('identifiers', identifiers.getAttribute('content'))
+        }
+
+        if (publisher) {
+          setValue('publisher', publisher.getAttribute('content'))
+        }
+
+        if (relatedIdentifiers) {
+          setValue('relatedIdentifiers', relatedIdentifiers.getAttribute('content'))
+        }
+
+        if (seriesTitle) {
+          setValue('seriesTitle', seriesTitle.getAttribute('content'))
+        }
+
+        if (seriesType) {
+          setValue('seriesType', seriesType.getAttribute('content'))
+        }
+
+        if (seriesPosition) {
+          setValue('seriesPosition', seriesPosition.getAttribute('content'))
+        }
+
+        if (remediatedBy) {
+          setValue('remediatedBy', remediatedBy.getAttribute('content'))
+        }
+
       }
       reader.readAsArrayBuffer(file)
     })
